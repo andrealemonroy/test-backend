@@ -13,8 +13,8 @@ class UsersService {
   }
 
   async getUser(user) {
-    const user = await this.mongoDB.findOne(this.collection, user);
-    return user || {};
+    const userFound = await this.mongoDB.findOne(this.collection, user);
+    return userFound || {};
   }
 
 }
