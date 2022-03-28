@@ -1,30 +1,30 @@
-const express = require('express');
-const UsersService = require('../services/users');
+const express = require("express");
+const UsersService = require("../services/users");
 
 const {
   userIdSchema,
   createUserSchema,
   updateUserSchema,
-  userLocationSchema
-} = require('../utils/schemas/users');
+  userLocationSchema,
+} = require("../utils/schemas/users");
 
-const validationHandler = require('../utils/middleware/validationHandler');
+const validationHandler = require("../utils/middleware/validationHandler");
 
 function usersApi(app) {
   const router = express.Router();
-  app.use('/api/users', router);
+  app.use("/api/users", router);
 
   const usersService = new UsersService();
 
-  router.get('/', async function (req, res, next) {
+  router.get("/", async function (req, res, next) {
     const { tags } = req.query;
-
+    console.log('in')
     try {
       const users = await usersService.getUsers({ tags });
-
+      console.log(users);
       res.status(200).json({
         data: users,
-        message: 'users listed',
+        message: "users listed",
       });
     } catch (err) {
       next(err);
@@ -35,12 +35,12 @@ function usersApi(app) {
     '/',
     validationHandler(createUserSchema),
     async function (req, res, next) {
-      const { body: user } = req; 
+      const { body: user } = req;
       try {
-        const createdUserId = await usersService.getUser({ user });
+        const createdUserId = await usersService.createUser({ user });
 
         res.status(201).json({
-          data: createdUserId,
+          data: {id:createdUserId, documentNumber: user.documentNumber, carNumber: user.carNumber},
           message: 'user created',
         });
       } catch (err) {
@@ -48,8 +48,6 @@ function usersApi(app) {
       }
     }
   );
-
-
 }
 
 module.exports = usersApi;

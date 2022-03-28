@@ -1,7 +1,7 @@
 const joi = require("joi");
-const userDocumentNumber = joi.number().max(8);
-const userPhoneNumber = joi.number().max(9);
-const userCarNumber = joi.string().max(7);
+const userDocumentNumber = joi.string();
+const userPhoneNumber = joi.string();
+const userCarNumber = joi.string();
 const createUserSchema = {
   documentNumber: userDocumentNumber.required(),
   phoneNumber: userPhoneNumber.required(),

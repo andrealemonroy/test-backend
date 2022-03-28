@@ -13,9 +13,17 @@ class UsersService {
   }
 
   async getUser(user) {
-    const userFound = await this.mongoDB.findOne(this.collection, user);
+    console.log(user)
+    const userFound = await this.mongoDB.get(this.collection, user.documentNumber);
     return userFound || {};
   }
+
+  async createUser({ user }) {
+    const createUserId = await this.mongoDB.create(this.collection, user);
+    return createUserId;
+  }
+
+  
 
 }
 
