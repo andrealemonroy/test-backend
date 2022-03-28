@@ -2,10 +2,7 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 app.use(cors());
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
+
 const { config } = require('./config/index');
 const loginApi = require('./routes/login.js');
 
