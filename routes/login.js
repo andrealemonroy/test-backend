@@ -35,7 +35,7 @@ function usersApi(app) {
     '/',
     validationHandler(createUserSchema),
     async function (req, res, next) {
-      const { body: user } = req;
+      const { body: user } = req; 
       try {
         const createdUserId = await usersService.getUser({ user });
 
