@@ -1,7 +1,7 @@
 const cors = require('cors');
 const express = require('express');
 const app = express();
-app.use(cors());
+app.use(cors({origin:true,credentials: true}));
 const { config } = require('./config/index');
 const loginApi = require('./routes/login.js');
 
