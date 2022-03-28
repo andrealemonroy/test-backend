@@ -2,7 +2,6 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 app.use(cors());
-
 const { config } = require('./config/index');
 const loginApi = require('./routes/login.js');
 
