@@ -9,7 +9,7 @@ const {
   logErrors,
   errorHandlers,
   wrapError
-} = require('./utils/middleware/errorHandlers.js');
+} = require('./utils/middleware/errorHandlers.js'); 
 
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
 
