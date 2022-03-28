@@ -1,8 +1,7 @@
-const express = require('express');
 const cors = require('cors');
+const express = require('express');
 const app = express();
-const allowedOrigins = ["http://localhost:3000"];
-
+app.use(cors());
 const { config } = require('./config/index');
 const loginApi = require('./routes/login.js');
 
@@ -24,18 +23,7 @@ app.use(notFoundHandler);
 app.use(logErrors);
 app.use(wrapError);
 app.use(errorHandlers);
-app.use(function(req, res, next) {
-  let origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin); // restrict it to the required domain
-  }
 
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 app.listen(config.port, function() {
   console.log(`Listening http://localhost:${config.port}`);
 });
