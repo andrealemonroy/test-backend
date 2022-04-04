@@ -12,8 +12,8 @@ class UsersService {
     return users || [];
   }
 
-  async getUser(user) {
-    const userFound = await this.mongoDB.get(this.collection, user.id);
+  async getUser({userId}) {
+    const userFound = await this.mongoDB.get(this.collection, userId);
     return userFound || {};
   }
 
