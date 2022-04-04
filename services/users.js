@@ -13,7 +13,7 @@ class UsersService {
   }
 
   async getUser(user) {
-    const userFound = await this.mongoDB.get(this.collection, user.documentNumber);
+    const userFound = await this.mongoDB.get(this.collection, user.id);
     return userFound || {};
   }
 
