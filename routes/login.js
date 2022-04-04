@@ -31,6 +31,24 @@ function usersApi(app) {
     }
   });
 
+  router.get(
+    '/:userId',
+    validationHandler({ userId: userIdSchema }, 'params'),
+    async function (req, res, next) {
+      const { userId } = req.params;
+
+      try {
+        const users = await usersService.getUser({ userId });
+        res.status(200).json({
+          data: users,
+          message: 'user retrieved',
+        });
+      } catch (err) {
+        next(err);
+      }
+    }
+  );
+
   router.post(
     '/',
     validationHandler(createUserSchema),
