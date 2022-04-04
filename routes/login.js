@@ -33,7 +33,6 @@ function usersApi(app) {
 
   router.get(
     '/:userId',
-    validationHandler({ userId: userIdSchema }, 'params'),
     async function (req, res, next) {
       const { userId } = req.params;
 
